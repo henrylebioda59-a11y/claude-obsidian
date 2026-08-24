@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>claude-obsidian Vault Browser</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">claude-obsidian <span>vault browser</span></div>
+    <button id="open-vault" class="btn">Open vault…</button>
+    <span id="vault-name" class="vault-name"></span>
+    <span id="vault-status" class="vault-status"></span>
+  </header>
+
+  <div id="unsupported" class="unsupported hidden">
+    Your browser doesn't support the File System Access API. Use a recent
+    Chrome, Edge, or other Chromium-based browser, served over
+    <code>http://localhost</code> (not <code>file://</code>).
+  </div>
+
+  <main id="app" class="app hidden">
+    <aside class="sidebar">
+      <input id="search" type="search" placeholder="Search notes, tags, content…" />
+      <nav class="tabs">
+        <button class="tab active" data-tab="notes">Notes</button>
+        <button class="tab" data-tab="hot">Hot</button>
+        <button class="tab" data-tab="log">Log</button>
+        <button class="tab" data-tab="ledgers">Ledgers</button>
+        <button class="tab" data-tab="graph">Graph</button>
+      </nav>
+      <ul id="note-list" class="note-list"></ul>
+    </aside>
+
+    <section class="content">
+      <div id="panel-notes" class="panel active">
+        <div id="note-view" class="note-view empty">
+          Select a note from the list, or search above.
+        </div>
+      </div>
+      <div id="panel-hot" class="panel">
+        <div id="hot-view" class="note-view"></div>
+      </div>
+      <div id="panel-log" class="panel">
+        <div id="log-view" class="note-view"></div>
+      </div>
+      <div id="panel-ledgers" class="panel">
+        <div id="ledgers-view" class="note-view"></div>
+      </div>
+      <div id="panel-graph" class="panel">
+        <canvas id="graph-canvas"></canvas>
+      </div>
+    </section>
+
+    <aside class="rightbar">
+      <h3>Properties</h3>
+      <div id="properties" class="properties"></div>
+      <h3>Tags</h3>
+      <div id="tags" class="tags"></div>
+      <h3>Backlinks</h3>
+      <ul id="backlinks" class="backlinks"></ul>
+      <h3>Outgoing links</h3>
+      <ul id="outlinks" class="backlinks"></ul>
+    </aside>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
