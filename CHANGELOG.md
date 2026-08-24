@@ -14,6 +14,10 @@ implementation record for older releases.
   (`wsl --status` hanging after install), approval-hash environment binding,
   and filesystem identity requirements. Linked from the README, install
   guide, compound vault guide, and the wiki skill's transaction reference.
+- Documented an optional Perplexity search backend for the `autoresearch`
+  skill's egress step, sourced from a user-local `PERPLEXITY_API_KEY` (never
+  committed or written into the vault) and recorded with `synthetic` source
+  authority so only its underlying cited sources can back an accepted claim.
 
 ### Changed
 

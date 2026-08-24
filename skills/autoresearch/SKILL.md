@@ -44,6 +44,25 @@ Do not send private vault text, file paths, credentials, or unrelated conversati
 content to external services. Without egress consent, research only the selected
 vault and user-provided sources and label that boundary.
 
+## Optional search backend
+
+By default, egress uses whatever web-search and fetch tools the host already
+provides. A user may instead configure Perplexity's answer API as the search
+backend for the "search the gaps" step, by exporting `PERPLEXITY_API_KEY` in
+their own local shell or an untracked `.env` — never in a vault file, a
+transaction bundle, a captured source, or this repository. Treat the key as a
+credential covered by the rule above: it is never sent onward except to the
+Perplexity API itself, and it is never written back into the vault.
+
+A Perplexity response is a model-generated synthesis, not a primary document.
+Record it with source authority `synthetic` per
+[the provenance contract](../wiki/references/provenance.md), and separately
+record its underlying cited URLs as their own source records with their own
+authority. A claim may reach `accepted` only through a fresh, active,
+non-synthetic source — the Perplexity summary itself never satisfies that bar,
+even when convenient. If the key is absent, unset, or egress is not approved,
+fall back to the host's built-in tools and note the substitution.
+
 ## Run a draft-only research loop
 
 1. Read `wiki/hot.md`, `wiki/index.md`, source and claim ledgers, and a bounded
