@@ -191,6 +191,14 @@ Read each script's preview before applying. Retrieval may use local BM25 alone;
 model-based contextual prefixes or remote endpoints require explicit egress
 consent. Optional tools such as Ollama and defuddle are capability-detected.
 
+The `autoresearch` skill can optionally use Perplexity's answer API as its
+search backend instead of the host's built-in web search. Export
+`PERPLEXITY_API_KEY` in your own shell profile or an untracked `.env`/`.env.local`
+(already excluded by `.gitignore`) — never commit it, and never let an agent
+write it into a vault file or transaction bundle. Without the key, or without
+egress consent, `autoresearch` falls back to the host's own tools. See
+[skills/autoresearch/SKILL.md](../skills/autoresearch/SKILL.md#optional-search-backend).
+
 ## First operation
 
 Place a source in `inbox/`. Inspect the byte-capture plan:
